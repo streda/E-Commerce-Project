@@ -8,10 +8,11 @@
 		<version>3.3.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>auth-course</artifactId>
+
+	<groupId>com.e_commerce.project</groupId>
+	<artifactId>e-commerce-project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>auth-course</name>
+	<name>e-commerce-project</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

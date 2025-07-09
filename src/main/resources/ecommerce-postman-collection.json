@@ -1,0 +1,183 @@
+{
+    "info": {
+      "name": "E-Commerce-Project API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Create User",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "url": {
+            "raw": "http://localhost:8080/api/user/create",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8080",
+            "path": ["api", "user", "create"]
+          },
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"password123\",\n  \"confirmPassword\": \"password123\"\n}"
+          }
+        }
+      },
+      {
+        "name": "Login",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "url": {
+            "raw": "http://localhost:8080/login",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8080",
+            "path": ["login"]
+          },
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"password123\"\n}"
+          }
+        },
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "type": "text/javascript",
+              "exec": [
+                "// Grab the Authorization header (Bearer token)",
+                "const token = pm.response.headers.get('Authorization');",
+                "pm.environment.set('token', token);"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Get All Items",
+        "request": {
+          "method": "GET",
+          "header": [
+            { "key": "Authorization", "value": "{{token}}" }
+          ],
+          "url": {
+            "raw": "http://localhost:8080/api/item",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8080",
+            "path": ["api", "item"]
+          }
+        }
+      },
+      {
+        "name": "Get Item By ID",
+        "request": {
+          "method": "GET",
+          "header": [
+            { "key": "Authorization", "value": "{{token}}" }
+          ],
+          "url": {
+            "raw": "http://localhost:8080/api/item/1",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8080",
+            "path": ["api", "item", "1"]
+          }
+        }
+      },
+      {
+        "name": "Get Items By Name",
+        "request": {
+          "method": "GET",
+          "header": [
+            { "key": "Authorization", "value": "{{token}}" }
+          ],
+          "url": {
+            "raw": "http://localhost:8080/api/item/name/Sample%20Item",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8080",
+            "path": ["api", "item", "name", "Sample%20Item"]
+          }
+        }
+      },
+      {
+        "name": "Add To Cart",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" },
+            { "key": "Authorization", "value": "{{token}}" }
+          ],
+          "url": {
+            "raw": "http://localhost:8080/api/cart/addToCart",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8080",
+            "path": ["api", "cart", "addToCart"]
+          },
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"username\": \"testuser\",\n  \"itemId\": 1,\n  \"quantity\": 2\n}"
+          }
+        }
+      },
+      {
+        "name": "Remove From Cart",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" },
+            { "key": "Authorization", "value": "{{token}}" }
+          ],
+          "url": {
+            "raw": "http://localhost:8080/api/cart/removeFromCart",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8080",
+            "path": ["api", "cart", "removeFromCart"]
+          },
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"username\": \"testuser\",\n  \"itemId\": 1,\n  \"quantity\": 1\n}"
+          }
+        }
+      },
+      {
+        "name": "Submit Order",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Authorization", "value": "{{token}}" }
+          ],
+          "url": {
+            "raw": "http://localhost:8080/api/order/submit/testuser",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8080",
+            "path": ["api", "order", "submit", "testuser"]
+          }
+        }
+      },
+      {
+        "name": "Get Order History",
+        "request": {
+          "method": "GET",
+          "header": [
+            { "key": "Authorization", "value": "{{token}}" }
+          ],
+          "url": {
+            "raw": "http://localhost:8080/api/order/history/testuser",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8080",
+            "path": ["api", "order", "history", "testuser"]
+          }
+        }
+      }
+    ]
+  }

@@ -44,13 +44,38 @@ public class UserController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<User> createUser(@RequestBody CreateUserRequest createUserRequest) {
+	public ResponseEntity<?> createUser(@RequestBody CreateUserRequest createUserRequest) {
+
+		// Checking passwords match
+		if (!createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())) {
+			return ResponseEntity
+					.badRequest()
+					.body("Password and confirmPassword do not match");
+		}
+
+		// Enforcing minimum length
+		if (createUserRequest.getPassword().length() < 7) {
+			return ResponseEntity
+					.badRequest()
+					.body("Password must be at least 7 characters");
+		}
+
+		// Build and save user
 		User user = new User();
 		user.setUsername(createUserRequest.getUsername());
+		// Hash and set the password
+		user.setPassword(bCryptPasswordEncoder.encode(createUserRequest.getPassword()));
+
+		// Create an empty cart and link
 		Cart cart = new Cart();
 		cartRepository.save(cart);
 		user.setCart(cart);
+
+		// Save the user (now has non-null password)
 		userRepository.save(user);
+
+		// Hide the password on the response
+		user.setPassword(null);
 		return ResponseEntity.ok(user);
 	}
 
