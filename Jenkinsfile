@@ -11,7 +11,7 @@ pipeline {
         stage('Build with Maven') {
             steps {
                 script {
-                    docker.image('maven:3.8.8-openjdk-17').inside {
+                    docker.image('maven:3.9.6-openjdk-17').inside {
                         sh 'mvn clean package -DskipTests'
                     }
                 }
