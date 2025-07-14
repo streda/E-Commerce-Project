@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone repo') {
             steps {
-                git 'https://github.com/streda/E-Commerce-Project.git'
+                git branch: 'main', url: 'https://github.com/streda/E-Commerce-Project.git'
             }
         }
 
