@@ -2,7 +2,7 @@
 
     <appender name="splunk" class="com.splunk.logging.HttpEventCollectorLogbackAppender">
         <url>https://localhost:8088</url>
-        <token>8dba60f5-620e-4626-a5eb-ae54b630c77a</token>
+        <token>${SPLUNK_TOKEN}</token>
         <index>main</index>
         <source>http:ecommerce-logs</source> <!-- MATCH source from curl test -->
         <sourcetype>httpevent</sourcetype>   <!-- MATCH sourcetype from curl test -->
