@@ -26,7 +26,8 @@ pipeline {
 
         stage('Run Docker Container') {
             steps {
-                sh 'docker run -d -p 8080:8080 ecommerce-app'
+                sh 'docker rm -f ecommerce-app || true'
+                sh 'docker run -d --name ecommerce-app -p 8080:8080 ecommerce-app'
             }
         }
     }
