@@ -60,6 +60,7 @@ public class WebSecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                         .requestMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
+                        .requestMatchers("/api/user/test-log").permitAll()
                         .anyRequest().authenticated())
                 .build();
     }

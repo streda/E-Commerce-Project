@@ -10,6 +10,8 @@ import com.e_commerce.project.model.persistence.User;
 import com.e_commerce.project.model.requests.CreateUserRequest;
 import com.e_commerce.project.model.persistence.repositories.CartRepository;
 import com.e_commerce.project.model.persistence.repositories.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class UserService {
@@ -25,6 +27,8 @@ public class UserService {
         this.cartRepo = cartRepo;
         this.encoder = encoder;
     }
+
+    private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
     public Optional<User> findById(Long id) {
         return userRepo.findById(id);

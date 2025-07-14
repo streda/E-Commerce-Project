@@ -20,6 +20,13 @@
 
 	</properties>
 
+<repositories>
+    <repository>
+        <id>splunk-artifactory</id>
+        <url>https://splunk.jfrog.io/splunk/ext-releases-local</url>
+    </repository>
+</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -82,10 +89,16 @@
     <artifactId>slf4j-api</artifactId>
     <version>2.0.12</version> 
 </dependency>
-		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-reload4j -->
+
 <dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>slf4j-reload4j</artifactId>    
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-logging</artifactId>
+</dependency>
+
+<dependency>
+  <groupId>com.splunk.logging</groupId>
+  <artifactId>splunk-library-javalogging</artifactId>
+  <version>1.11.5</version>
 </dependency>
 
 	</dependencies>

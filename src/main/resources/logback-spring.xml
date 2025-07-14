@@ -1,0 +1,23 @@
+<configuration>
+
+    <appender name="splunk" class="com.splunk.logging.HttpEventCollectorLogbackAppender">
+        <url>https://localhost:8088</url>
+        <token>8dba60f5-620e-4626-a5eb-ae54b630c77a</token>
+        <index>main</index>
+        <source>http:ecommerce-logs</source> <!-- MATCH source from curl test -->
+        <sourcetype>httpevent</sourcetype>   <!-- MATCH sourcetype from curl test -->
+        <disableCertificateValidation>true</disableCertificateValidation>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="splunk" />
+    </root>
+
+</configuration>
