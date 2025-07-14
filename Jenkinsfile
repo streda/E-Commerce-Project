@@ -1,20 +1,14 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.9.4-eclipse-temurin-17'
-        }
-    }
+    agent any
 
     stages {
-        stage('Clone repo') {
+        stage('Build with Maven inside Docker') {
             steps {
-                git branch: 'main', url: 'https://github.com/streda/E-Commerce-Project.git'
-            }
-        }
-
-        stage('Build with Maven') {
-            steps {
-                sh 'mvn clean package -DskipTests'
+                script {
+                    docker.image('maven:3.9.4-eclipse-temurin-17').inside {
+                        sh 'mvn clean package -DskipTests'
+                    }
+                }
             }
         }
 
