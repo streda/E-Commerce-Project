@@ -2,9 +2,19 @@ pipeline {
     agent any
 
     stages {
+        stage('Clone repo') {
+            steps {
+                git branch: 'main', url: 'https://github.com/streda/E-Commerce-Project.git'
+            }
+        }
+
         stage('Build with Maven') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                script {
+                    docker.image('maven:3.8.8-openjdk-17').inside {
+                        sh 'mvn clean package -DskipTests'
+                    }
+                }
             }
         }
 
